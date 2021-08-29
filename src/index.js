@@ -1,15 +1,17 @@
 module.exports = function check(str, bracketsConfig) {
-  // your solution
-}
+  function t() {
+    let obj = {}
+    for (let i = 0; i < bracketsConfig.length; i++) {
+      for (let j = 1; j < bracketsConfig[i].length; j++){
+        obj[bracketsConfig[i][j]] = bracketsConfig[i][j-1]
+      }
+    }
+    return obj
+  }
 
-/*
-const OPEN_BRACKETS = ['(', '{'];
-  const BRACKETS_PAIR = {
-    [')']: '(',
-    ['}']: '{',
-  };
+  const OPEN_BRACKETS = Object.values(t()) 
+  const BRACKETS_PAIR = t()
 
-  function isBracketsOk(str) {
     let stack = [];
 
     for (let i = 0; i < str.length; i++) {
@@ -31,7 +33,5 @@ const OPEN_BRACKETS = ['(', '{'];
         }
       }
     }
-
     return stack.length === 0;
-  }
-*/ 
+}
