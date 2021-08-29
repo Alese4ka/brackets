@@ -17,9 +17,17 @@ module.exports = function check(str, bracketsConfig) {
     for (let i = 0; i < str.length; i++) {
       let currentSymbol = str[i];
       
-      if (OPEN_BRACKETS.includes(currentSymbol)) {
-        stack.push(currentSymbol);
-      } else {
+      if (OPEN_BRACKETS.includes(currentSymbol) && currentSymbol !== BRACKETS_PAIR[currentSymbol]) {
+        stack.push(currentSymbol)
+      }
+      else if (OPEN_BRACKETS.includes(currentSymbol) && currentSymbol === BRACKETS_PAIR[currentSymbol]){
+        if (stack[stack.length-1] === currentSymbol){
+            stack.pop() 
+        } else {
+            stack.push(currentSymbol)
+        }
+      }  
+      else {
         if (stack.length === 0) {
           return false;
         }
